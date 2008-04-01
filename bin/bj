@@ -378,6 +378,9 @@ txt
       argument :required
     }
     option("--daemon"){}
+    option("--pidfile"){
+      argument :required
+    }
 
     def run
       options = {}
@@ -407,6 +410,12 @@ txt
         info{ "SIGTERM" }
         exit
       }
+      
+      if param["pidfile"].given?
+        File.open(param["pidfile"].value, "w") do |pidfile|
+          pidfile.write(Process.pid().to_s)
+        end
+      end
 
       if param["daemon"].given?
         daemon{ Bj.run options }
