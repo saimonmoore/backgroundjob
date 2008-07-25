@@ -4,7 +4,7 @@ require 'rubygems'
 Gem::Specification::new do |spec|
   $VERBOSE = nil
   spec.name = lib 
-  spec.version = version 
+  spec.version = version.gsub('.git','')
   spec.platform = Gem::Platform::RUBY
   spec.summary = lib 
 
